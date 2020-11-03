@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from copy import deepcopy
 # %%
 map = []
-with open(r'Astar_search\maze.txt','rb') as f:
+with open(r'A_start_search_algothrim\Astar_search\maze.txt','rb') as f:
 	for lines in f:
 		map.append(list(lines.decode('utf-8').strip()))
 # map = [[' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
@@ -85,7 +85,6 @@ def color_print():
     mmap[startp[1]][startp[0]] = (160,32,240)
     mmap[goalp[1]][goalp[0]] = (160,32,240)
     plt.imshow(mmap)
-    # plt.show()
     plt.ion()
     plt.pause(0.1)
     plt.clf()
@@ -168,7 +167,7 @@ def astar_search():
     sp = Node(startp,parent=0)
     open.append(sp)
     while open != []:
-        # color_print() #打印每一步的图像
+        color_print() #打印每一步的图像
         print(open)
         open.sort()
         lesscost_p = next_p() #阈值问题：不能遇到困难就放弃 (unfinished)
@@ -177,8 +176,8 @@ def astar_search():
         if  traceback == 'finished, push parentNode to closed.':
             closed.append(lesscost_p)
         else: #find the goal
-            print('wow')
             backtrace(traceback)
+            print('The final path:\n')
             print(path)
             printpathimg()
             break
